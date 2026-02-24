@@ -1,7 +1,5 @@
 package uk.nhsbsa.jobs.pages;
-
 import static org.assertj.core.api.Assertions.assertThat;
-
 import java.time.Duration;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -99,5 +97,18 @@ public class ResultsPage extends BasePage {
                         .isAfterOrEqualTo(parsedDates.get(i + 1));
             }
         }
+    }
+    private final By noResultsMessage =
+            By.xpath("//*[contains(text(),'not found') or contains(text(),'could not find')]");
+
+    public void assertNoResultsMessageDisplayed() {
+
+        WebElement message = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(noResultsMessage)
+        );
+
+        assertThat(message.getText())
+                .containsIgnoringCase("not found")
+                .containsIgnoringCase("could not find");
     }
 }
