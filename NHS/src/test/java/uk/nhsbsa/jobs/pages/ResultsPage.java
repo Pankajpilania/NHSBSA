@@ -45,12 +45,29 @@ public class ResultsPage extends BasePage {
                 .isNotEmpty();
     }
 
+
     public void sortByNewestDatePosted() {
         Select select = new Select(new WebDriverWait(driver, Duration.ofSeconds(15))
                 .until(ExpectedConditions.visibilityOfElementLocated(sortSelect)));
 
         select.selectByVisibleText("Date Posted (newest)");
     }
+    public void assertSortOptionPresent(String option) {
+
+        Select select = new Select(
+                wait.until(ExpectedConditions.visibilityOfElementLocated(sortSelect))
+        );
+
+        boolean found = select.getOptions()
+                .stream()
+                .anyMatch(o -> o.getText().trim().equalsIgnoreCase(option));
+
+        assertThat(found)
+                .as("Sort option not found: " + option)
+                .isTrue();
+    }
+
+
 
     public void assertSortSetToNewest() {
         Select select = new Select(driver.findElement(sortSelect));
