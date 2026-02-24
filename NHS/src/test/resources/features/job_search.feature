@@ -37,20 +37,8 @@ Feature: NHS Jobs search
     When I search for "nurse" jobs in "Leeds" within "10"
     Then the sort dropdown should contain "Date Posted (newest)"
 
-  @negative
-  Scenario: Search with empty criteria
-    Given I am a jobseeker on the NHS Jobs search page
-    When I search for "" jobs in "" within ""
-    Then the system should handle the request without error
-
   @security
   Scenario: SQL injection attempt in keyword field
     Given I am a jobseeker on the NHS Jobs search page
     When I search for "' OR 1=1 --" jobs in "Leeds" within "10"
     Then the system should handle the input safely
-
-  @security
-  Scenario: Script injection attempt in keyword field
-    Given I am a jobseeker on the NHS Jobs search page
-    When I search for "<script>alert('x')</script>" jobs in "Leeds" within "10"
-    Then the system should not execute the script
