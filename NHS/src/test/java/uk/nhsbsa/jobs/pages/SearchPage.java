@@ -1,6 +1,12 @@
 package uk.nhsbsa.jobs.pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
 
 public class SearchPage extends BasePage {
 
@@ -9,8 +15,13 @@ public class SearchPage extends BasePage {
     private final By keywordField = By.cssSelector("input[name='keyword'], input[id*='keyword']");
     private final By locationField = By.cssSelector("input[name='location'], input[id*='location']");
     private final By distanceSelect = By.cssSelector("select[name='distance'], select[id*='distance']");
-    private final By cookiesButton = By.cssSelector("button[type='submit'], input[type='submit']");
+    private final By cookiesButton = By.xpath("//button[@id='accept-cookies']");
     private final By searchButton = By.cssSelector("button[type='submit'], input[type='submit']");
+    private final By moreSearchOptionsLink = By.xpath("//a[contains(text(),'More search options') or contains(text(),'Fewer search options')]");
+    private final By jobReferenceField = By.xpath("//input[@id='jobReference']");
+    private final By employerField = By.xpath("//input[@id='employer']");
+
+
     public void search(String keyword, String location, String distance) {
 
         if (keyword != null && !keyword.isBlank()) {
@@ -47,5 +58,83 @@ public class SearchPage extends BasePage {
 
     public void submitSearch() {
         click(searchButton);
+    }
+
+    public void clickSearch() {
+        click(searchButton);
+    }
+
+    private final By payRangeSelect = By.id("payRange");
+
+    public void selectPayRange(String visibleText) {
+
+        // Ensure advanced section is expanded first
+        WebElement dropdown = wait.until(
+                ExpectedConditions.elementToBeClickable(payRangeSelect)
+        );
+
+        dropdown.click();
+
+        Select select = new Select(dropdown);
+
+        wait.until(driver -> select.getOptions().size() > 1);
+
+        select.selectByVisibleText(visibleText);
+    }
+   /* // Advanced Search Locators
+    private final By moreSearchOptionsLink =
+            By.xpath("//a[contains(text(),'More search options') or contains(text(),'Fewer search options')]");
+
+    private final By jobReferenceField =
+            By.xpath("//input[contains(@id,'jobReference') or contains(@name,'jobReference')]");
+
+    private final By employerField =
+            By.xpath("//input[contains(@id,'employer') or contains(@name,'employer')]");*/
+
+
+    // Expand Advanced Section
+    public void expandMoreSearchOptions() {
+
+        wait.until(ExpectedConditions.elementToBeClickable(moreSearchOptionsLink))
+                .click();
+
+        // Wait until advanced fields are visible
+        wait.until(ExpectedConditions.visibilityOfElementLocated(jobReferenceField));
+    }
+
+
+    // Enter Job Reference
+    public void enterJobReference(String reference) {
+
+        WebElement field = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(jobReferenceField)
+        );
+
+        field.clear();
+        field.sendKeys(reference);
+    }
+
+
+    // Enter Employer
+    public void enterEmployer(String employer) {
+
+        WebElement field = wait.until(
+                ExpectedConditions.visibilityOfElementLocated(employerField)
+        );
+
+        field.clear();
+        field.sendKeys(employer);
+    }
+
+
+    // Visibility Checks
+    public boolean isJobReferenceVisible() {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(jobReferenceField))
+                .isDisplayed();
+    }
+
+    public boolean isEmployerVisible() {
+        return wait.until(ExpectedConditions.visibilityOfElementLocated(employerField))
+                .isDisplayed();
     }
 }

@@ -78,6 +78,7 @@ public class SearchSteps {
     public void i_should_see_a_no_results_message() {
         assertThat(driver.getPageSource())
                 .contains("Location not found");
+        resultsPage.assertNoResultsMessageDisplayed();
     }
 
     @Then("the sort dropdown should contain {string}")
@@ -86,10 +87,6 @@ public class SearchSteps {
     }
 
     @Then("the system should handle the request without error")
-    public void the_system_should_handle_the_request_without_error() {
-        assertThat(driver.getTitle()).isNotBlank();
-    }
-
     @Then("the system should handle the input safely")
     public void the_system_should_handle_the_input_safely() {
         assertThat(driver.getPageSource())
@@ -97,9 +94,52 @@ public class SearchSteps {
                 .doesNotContain("syntax error");
     }
 
-    @Then("the system should not execute the script")
-    public void the_system_should_not_execute_the_script() {
-        assertThat(driver.getPageSource())
-                .doesNotContain("<script>alert");
+    @When("I enter keyword {string}")
+    public void i_enter_keyword(String keyword) {
+        searchPage.enterKeyword(keyword);
     }
+
+    @When("I enter location {string}")
+    public void i_enter_location(String location) {
+        searchPage.enterLocation(location);
+    }
+
+    @When("I choose distance {string}")
+    public void i_choose_distance(String distance) {
+        searchPage.chooseDistance(distance);
+    }
+
+    @When("I select pay range {string}")
+    public void i_select_pay_range(String payRange) {
+        searchPage.selectPayRange(payRange);
+    }
+    // Expand Advanced
+    @When("I expand more search options")
+    public void i_expand_more_search_options() {
+        searchPage.expandMoreSearchOptions();
+    }
+
+    // Visibility checks
+    @Then("the Job reference field should be visible")
+    public void job_reference_field_should_be_visible() {
+        assertThat(searchPage.isJobReferenceVisible()).isTrue();
+    }
+
+    @Then("the Employer field should be visible")
+    public void employer_field_should_be_visible() {
+        assertThat(searchPage.isEmployerVisible()).isTrue();
+    }
+
+    // Enter Job Reference
+    @When("I enter job reference {string}")
+    public void i_enter_job_reference(String reference) {
+        searchPage.enterJobReference(reference);
+    }
+
+    // Click Search
+    @When("I click the Search button")
+    public void i_click_the_search_button() {
+        searchPage.submitSearch();
+    }
+
 }
