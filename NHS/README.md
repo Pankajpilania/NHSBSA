@@ -10,6 +10,10 @@ This repository contains a BDD-focused Functional Acceptance automation suite fo
 
 ## Project Structure
 - `src/test/resources/features/job_search.feature` – user-centric BDD scenario.
+- - `src/test/resources/features/accessibility.feature` – user-centric BDD scenario.
+- `src/test/resources/features/compatibility.feature` – user-centric BDD scenario.
+- `src/test/resources/features/pay_range.feature` – user-centric BDD scenario.
+- `src/test/resources/features/performance.feature` – user-centric BDD scenario.
 - `src/test/java/uk/nhsbsa/jobs/steps` – Cucumber step definitions.
 - `src/test/java/uk/nhsbsa/jobs/pages` – page objects and UI interactions.
 - `src/test/java/uk/nhsbsa/jobs/config` – browser/driver configuration.
@@ -35,3 +39,4 @@ mvn clean test -Dbrowser=firefox -Dheadless=true
 ## Notes
 - Selenium Manager is used via Selenium 4 to resolve browser drivers automatically.
 - Test selectors are written to be resilient to minor UI markup differences.
+
