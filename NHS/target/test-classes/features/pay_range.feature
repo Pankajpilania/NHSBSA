@@ -1,12 +1,14 @@
 @functional @advanced @payrange
 Feature: NHS Jobs Advanced Search - Pay Range Filter
 
-  Scenario Outline: Search using each available pay range
+  Background:
     Given I am a jobseeker on the NHS Jobs search page
-    When I expand more search options
-    And I enter keyword "nurse"
-    And I enter location "Leeds"
-    And I choose distance "10"
+    And I expand more search options
+
+  Scenario Outline: Search using each available pay range
+    When I enter "nurse" in keyword
+    And I enter "Leeds" in location
+    And I select distance "10"
     And I select pay range "<payRange>"
     And I click the Search button
     Then I should receive matching jobs

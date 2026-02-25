@@ -11,7 +11,6 @@
   - Enter search preferences (keyword, location, distance).
   - Submit search and verify results are returned.
   - Sort by "Date posted (newest)" and validate newest ordering when dates are available.
-
 ## 2) Choice of tech and tools
 - **Java 21** for modern language support/LTS.
 - **Selenium 4** for browser automation + Selenium Manager (no local drivers).

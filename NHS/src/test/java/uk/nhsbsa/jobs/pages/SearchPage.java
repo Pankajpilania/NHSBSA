@@ -81,18 +81,7 @@ public class SearchPage extends BasePage {
 
         select.selectByVisibleText(visibleText);
     }
-   /* // Advanced Search Locators
-    private final By moreSearchOptionsLink =
-            By.xpath("//a[contains(text(),'More search options') or contains(text(),'Fewer search options')]");
 
-    private final By jobReferenceField =
-            By.xpath("//input[contains(@id,'jobReference') or contains(@name,'jobReference')]");
-
-    private final By employerField =
-            By.xpath("//input[contains(@id,'employer') or contains(@name,'employer')]");*/
-
-
-    // Expand Advanced Section
     public void expandMoreSearchOptions() {
 
         wait.until(ExpectedConditions.elementToBeClickable(moreSearchOptionsLink))
@@ -116,7 +105,7 @@ public class SearchPage extends BasePage {
 
 
     // Enter Employer
-    public void enterEmployer(String employer) {
+ /*   public void enterEmployer(String employer) {
 
         WebElement field = wait.until(
                 ExpectedConditions.visibilityOfElementLocated(employerField)
@@ -124,7 +113,7 @@ public class SearchPage extends BasePage {
 
         field.clear();
         field.sendKeys(employer);
-    }
+    }*/
 
 
     // Visibility Checks
