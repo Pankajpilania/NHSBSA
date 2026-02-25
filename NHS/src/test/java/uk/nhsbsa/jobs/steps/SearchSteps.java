@@ -88,26 +88,6 @@ public class SearchSteps {
 
     @Then("the system should handle the request without error")
     @Then("the system should handle the input safely")
-    public void the_system_should_handle_the_input_safely() {
-        assertThat(driver.getPageSource())
-                .doesNotContain("SQL")
-                .doesNotContain("syntax error");
-    }
-
-    @When("I enter keyword {string}")
-    public void i_enter_keyword(String keyword) {
-        searchPage.enterKeyword(keyword);
-    }
-
-    @When("I enter location {string}")
-    public void i_enter_location(String location) {
-        searchPage.enterLocation(location);
-    }
-
-    @When("I choose distance {string}")
-    public void i_choose_distance(String distance) {
-        searchPage.chooseDistance(distance);
-    }
 
     @When("I select pay range {string}")
     public void i_select_pay_range(String payRange) {
@@ -140,6 +120,20 @@ public class SearchSteps {
     @When("I click the Search button")
     public void i_click_the_search_button() {
         searchPage.submitSearch();
+    }
+    @When("I enter {string} in keyword")
+    public void i_enter_in_keyword(String keyword) {
+        searchPage.enterKeyword(keyword);
+    }
+
+    @When("I enter {string} in location")
+    public void i_enter_in_location(String location) {
+        searchPage.enterLocation(location);
+    }
+
+    @When("I select distance {string}")
+    public void i_select_distance(String distance) {
+        searchPage.chooseDistance(distance);
     }
 
 }

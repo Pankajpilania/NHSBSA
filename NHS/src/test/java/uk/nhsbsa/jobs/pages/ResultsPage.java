@@ -99,7 +99,7 @@ public class ResultsPage extends BasePage {
         }
     }
     private final By noResultsMessage =
-            By.xpath("//*[contains(text(),'not found') or contains(text(),'could not find')]");
+            By.xpath("//*[contains(text(),'No result found') or contains(text(),'No result found for')]");
 
     public void assertNoResultsMessageDisplayed() {
 
@@ -108,7 +108,7 @@ public class ResultsPage extends BasePage {
         );
 
         assertThat(message.getText())
-                .containsIgnoringCase("not found")
-                .containsIgnoringCase("could not find");
+                .containsIgnoringCase("No result found")
+                .containsIgnoringCase("No result found for");
     }
 }
