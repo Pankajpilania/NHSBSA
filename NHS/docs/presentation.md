@@ -8,9 +8,15 @@
   - Step definitions express business actions.
   - Page objects hold locators and browser operations.
 - **Coverage:**
-  - Enter search preferences (keyword, location, distance).
+- Core Search
+-  Keyword search, Location search, Distance filter, Sort by “Date Posted (newest)”
+-  Sort by "Date posted (newest)" and validate newest ordering when dates are available.
+- Advanced Search
+- Job reference, Employer name, Pay range filtering, Negative Testing, Invalid location, Invalid job reference, Empty search
+- SQL/script injection
+- Boundary Testing, Maximum distance (100 miles)
+- Highest pay range (£100,000+)
   - Submit search and verify results are returned.
-  - Sort by "Date posted (newest)" and validate newest ordering when dates are available.
 ## 2) Choice of tech and tools
 - **Java 21** for modern language support/LTS.
 - **Selenium 4** for browser automation + Selenium Manager (no local drivers).
@@ -114,3 +120,4 @@ For migrating vacancies and applications from in-house systems to NHS Jobs:
    - Migration window duration, rollback strategy, auditability, security/privacy controls.
 7. **Cutover and hypercare plan**
    - Parallel run criteria, go/no-go checks, and post-migration monitoring.
+
