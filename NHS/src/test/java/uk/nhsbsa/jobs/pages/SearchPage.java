@@ -4,10 +4,6 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
-
 public class SearchPage extends BasePage {
 
     private static final String SEARCH_URL = "https://www.jobs.nhs.uk/candidate/search";
@@ -21,23 +17,6 @@ public class SearchPage extends BasePage {
     private final By jobReferenceField = By.xpath("//input[@id='jobReference']");
     private final By employerField = By.xpath("//input[@id='employer']");
 
-
-    public void search(String keyword, String location, String distance) {
-
-        if (keyword != null && !keyword.isBlank()) {
-            enterKeyword(keyword);
-        }
-
-        if (location != null && !location.isBlank()) {
-            enterLocation(location);
-        }
-
-        if (distance != null && !distance.isBlank()) {
-            chooseDistance(distance);
-        }
-
-        submitSearch();
-    }
     public void open() {
         driver.get(SEARCH_URL);
         driver.findElement(cookiesButton).click();
@@ -60,9 +39,6 @@ public class SearchPage extends BasePage {
         click(searchButton);
     }
 
-    public void clickSearch() {
-        click(searchButton);
-    }
 
     private final By payRangeSelect = By.id("payRange");
 
@@ -105,15 +81,6 @@ public class SearchPage extends BasePage {
 
 
     // Enter Employer
- /*   public void enterEmployer(String employer) {
-
-        WebElement field = wait.until(
-                ExpectedConditions.visibilityOfElementLocated(employerField)
-        );
-
-        field.clear();
-        field.sendKeys(employer);
-    }*/
 
 
     // Visibility Checks
